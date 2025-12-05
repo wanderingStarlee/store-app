@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+<h1>Create Order</h1>
+<form method="post" th:action="@{/orders}">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId" required><br><br>
+
+    <label for="totalAmount">Total Amount:</label>
+    <input type="text" id="totalAmount" name="totalAmount" required><br><br>
+
+    <button type="submit">Create Order</button>
+</form>
+</body>
+</html>

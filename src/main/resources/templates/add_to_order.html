@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add to Order</title>
+</head>
+<body>
+<h1>Add to Order</h1>
+<form method="post" th:action="@{/addToOrder}">
+    <input type="hidden" name="productId" th:value="${product.id}">
+    <button type="submit">Add to Order</button>
+</form>
+</body>
+</html>

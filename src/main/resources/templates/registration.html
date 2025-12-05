@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация - Магазин ПК</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="container auth-container">
+    <div class="card">
+        <h2 class="form-title">Регистрация</h2>
+
+        <form method="post" th:action="@{/register}" th:object="${user}">
+            <div class="form-group">
+                <label for="username">Имя пользователя</label>
+                <input type="text" id="username" th:field="*{username}" placeholder="Придумайте логин" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" th:field="*{passwordHash}" placeholder="Придумайте пароль" required>
+            </div>
+
+            <button type="submit" class="btn">Зарегистрироваться</button>
+        </form>
+
+        <a th:href="@{/login}" class="btn btn-secondary">Уже есть аккаунт? Войти</a>
+    </div>
+</div>
+
+</body>
+</html>
