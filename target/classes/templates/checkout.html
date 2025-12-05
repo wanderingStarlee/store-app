@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<nav class="navbar">
+    <a th:href="@{/cart}" class="navbar-brand">← Назад в корзину</a>
+</nav>
+
+<div class="container auth-container">
+    <div class="card">
+        <h2 class="form-title">Оформление доставки</h2>
+        <p style="text-align:center; margin-bottom:20px;">Сумма заказа: <b th:text="${totalPrice} + ' ₽'"></b></p>
+
+        <form th:action="@{/cart/checkout/confirm}" method="post">
+            <div class="form-group">
+                <label>Адрес доставки</label>
+                <input type="text" name="address" placeholder="Улица, дом, квартира" required>
+            </div>
+            <div class="form-group">
+                <label>Телефон</label>
+                <input type="text" name="phone" placeholder="+7 (999) 000-00-00" required>
+            </div>
+
+            <button type="submit" class="btn" style="background:#28a745; margin-top:15px;">Подтвердить заказ</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

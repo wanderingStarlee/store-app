@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<nav class="navbar">
+    <a th:href="@{/computer_components}" class="navbar-brand">Магазин Комплектующих</a>
+    <div class="nav-links">
+        <a th:href="@{/computer_components}">← Назад в магазин</a>
+    </div>
+</nav>
+
+<div class="container auth-container" style="max-width: 800px;">
+    <h2 class="form-title">Ваша Корзина</h2>
+
+    <div th:if="${cartItems.empty}" style="text-align: center; padding: 40px;">
+        <h3>Корзина пуста 🛒</h3>
+        <a th:href="@{/computer_components}" class="btn" style="width: auto; margin-top: 20px;">Перейти к покупкам</a>
+    </div>
+
+    <div th:unless="${cartItems.empty}">
+        <div th:each="item : ${cartItems}" class="card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <!-- Картинка -->
+                <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+                <div th:if="${item.imageUrl == null}" style="width: 60px; height: 60px; background: #eee; border-radius: 5px;"></div>
+
+                <div>
+                    <h4 th:text="${item.title}" style="margin: 0;">Название</h4>
+                    <span th:text="${item.price} + ' ₽'" style="color: #28a745; font-weight: bold;">0 ₽</span>
+                </div>
+            </div>
+
+            <form th:action="@{/cart/remove}" method="post">
+                <input type="hidden" name="productId" th:value="${item.id}">
+                <button type="submit" class="btn" style="background: #dc3545; width: auto; padding: 5px 15px; font-size: 0.9rem;">Удалить</button>
+            </form>
+        </div>
+
+        <div style="text-align: right; margin-top: 30px; padding-top: 20px; border-top: 2px dashed #eee;">
+            <h3>Итого: <span th:text="${totalPrice} + ' ₽'">0 ₽</span></h3>
+
+            <a th:href="@{/cart/checkout}" class="btn" style="background: #28a745; width: 200px; text-decoration:none; text-align:center;">
+                Оформить заказ
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
